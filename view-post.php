@@ -28,6 +28,8 @@ if ($result === false) {
 }
 // Let's get a row
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+$bodyText = htmlEscape($row['body']);
+$paraText = str_replace("\n", "</p><p>", $bodyText);
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,7 +49,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             <?= $row['created_at'] ?>
         </div>
         <p>
-            <?= htmlEscape($row['body']) ?>
+            <?= $paraText ?>
         </p>
     </body>
 </html>
