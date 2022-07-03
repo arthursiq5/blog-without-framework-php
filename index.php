@@ -27,13 +27,13 @@ if ($stmt === false)
         <?php require 'templates/title.php'; ?>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
             <h2>
-                <?= htmlspecialchars($row['title'], ENT_HTML5, 'UTF-8') ?>
+                <?= htmlEscape($row['title']) ?>
             </h2>
             <div>
                 <?= $row['created_at'] ?>
             </div>
             <p>
-                <?= htmlspecialchars($row['body'], ENT_HTML5, 'UTF-8') ?>
+                <?= htmlEscape($row['body']) ?>
             </p>
             <p>
                 <a href="view-post.php?post_id=<?= $row['id'] ?>">Read more...</a>

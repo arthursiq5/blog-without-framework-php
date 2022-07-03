@@ -34,20 +34,20 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <head>
         <title>
             A blog application |
-            <?= htmlspecialchars($row['title'], ENT_HTML5, 'UTF-8') ?>
+            <?= htmlEscape($row['title']) ?>
         </title>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     </head>
     <body>
         <?php require 'templates/title.php'; ?>
         <h2>
-            <?= htmlspecialchars($row['title'], ENT_HTML5, 'UTF-8') ?>
+            <?= htmlEscape($row['title']) ?>
         </h2>
         <div>
             <?= $row['created_at'] ?>
         </div>
         <p>
-            <?= htmlspecialchars($row['body'], ENT_HTML5, 'UTF-8') ?>
+            <?= htmlEscape($row['body']) ?>
         </p>
     </body>
 </html>
