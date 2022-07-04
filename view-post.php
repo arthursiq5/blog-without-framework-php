@@ -12,6 +12,11 @@ if (isset($_GET['post_id'])) {
     $postId = 0;
 }
 $row = getPostRow($pdo, $postId);
+
+if (!$row) {
+    redirectAndExit('index.php?not-found=1');
+}
+
 $bodyText = htmlEscape($row['body']);
 $paraText = str_replace("\n", "</p><p>", $bodyText);
 ?>
