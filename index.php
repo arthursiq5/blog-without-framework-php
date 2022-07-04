@@ -30,7 +30,7 @@ if ($stmt === false)
                 <?= htmlEscape($row['title']) ?>
             </h2>
             <div>
-                <?= $row['created_at'] ?>
+                <?= convertSqlDate($row['created_at']) ?>
             </div>
             <p>
                 <?= htmlEscape($row['body']) ?>

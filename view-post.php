@@ -46,7 +46,7 @@ $paraText = str_replace("\n", "</p><p>", $bodyText);
             <?= htmlEscape($row['title']) ?>
         </h2>
         <div>
-            <?= $row['created_at'] ?>
+            <?= convertSqlDate($row['created_at']) ?>
         </div>
         <p>
             <?= $paraText ?>
