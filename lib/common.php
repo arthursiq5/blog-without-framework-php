@@ -53,3 +53,50 @@ function convertSqlDate($sqlDate)
     $date = DateTime::createFromFormat('Y-m-d', $sqlDate);
     return $date->format('d M Y');
 }
+
+/**
+ * Returns the number of comments for the specified post
+ *
+ * @param integer $postId
+ * @return integer
+ */
+function countCommentsForPost($postId)
+{
+    $pdo = getPDO();
+    $sql = "
+        SELECT
+            COUNT(*) c
+        FROM
+            comment
+        WHERE
+            post_id = :post_id
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        array('post_id' => $postId, )
+    );
+    return (int) $stmt->fetchColumn();
+}
+
+/**
+ * Returns all the comments for the specified post
+ *
+ * @param integer $postId
+ */
+function getCommentsForPost($postId)
+{
+    $pdo = getPDO();
+    $sql = "
+        SELECT
+            id, name, text, created_at, website
+        FROM
+            comment
+        WHERE
+            post_id = :post_id
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        array('post_id' => $postId, )
+    );
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
